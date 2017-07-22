@@ -20,7 +20,7 @@ class InvoiceViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         request_data = request.data.copy()
-        figure_file = request_data.get("figure_file")
+        figure_file = request_data.get("figure")
         if figure_file:
             # 支持文件上传
             request_data["figure"] = figure_file

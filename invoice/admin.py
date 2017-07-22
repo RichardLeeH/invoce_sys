@@ -10,7 +10,7 @@ class InvoiceAdmin(admin.ModelAdmin):
     list_filter = ("ctime", )
 
     def figure_img(self, obj):
-        return '<img src="%s" alt="icon img" />' % obj.figure.url
+        return '<img src="%s" alt="icon img" width="400px" />' % obj.figure.url
 
     figure_img.short_description = u"发票图"
     figure_img.allow_tags = True
