@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     
+    'xadmin',
+    'crispy_forms',
+    'reversion',
+    
     'account',
     'invoice'
 ]

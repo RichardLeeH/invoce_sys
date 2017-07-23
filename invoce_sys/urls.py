@@ -18,8 +18,16 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
+import xadmin
+xadmin.autodiscover()
+
+# version模块自动注册需要版本控制的 Model
+# from xadmin.plugins import xversion
+# xversion.register_models()
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'xadmin/', include(xadmin.site.urls)),
     url(r'^invoice/', include("invoice.urls")),
     url(r'^account/', include("account.urls")),
 ] + static(settings.STATIC_URL,
