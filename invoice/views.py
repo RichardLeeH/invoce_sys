@@ -1,6 +1,7 @@
 # coding=utf-8
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 from invoice.models import Invoice
 from invoice.serializers import InvoiceSerializer, InvoiceCreateSerializer
@@ -12,6 +13,8 @@ class InvoiceViewSet(viewsets.ModelViewSet):
     """
     queryset = Invoice.objects.all()
     pagination_class = None
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('status', 'user')
 
     def get_serializer_class(self):
         if self.request.method == "POST":

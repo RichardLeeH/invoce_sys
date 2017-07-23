@@ -40,9 +40,11 @@ class GlobalSetting(object):
 
 @xadmin.sites.register(Invoice)
 class InvoiceAdmin(object):
-    list_display = ("id", "figure_img", "info", "ctime")
+    list_display = ("id", "figure_img", "info", "status", "ctime")
     search_fields = ("invoice_code", "user__username")
-    list_filter = ("ctime",)
+    list_display_links = ("info", "invoice_code")
+    list_editable = ("status", )
+    list_filter = ("ctime", "status")
     
     def figure_img(self, obj):
         return '<img src="%s" alt="icon img" width="500px" />' % obj.figure.url

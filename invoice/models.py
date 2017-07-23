@@ -3,9 +3,16 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+STATUS_CHOICES = (
+    (0, "待确认"),
+    (1, "已确认"),
+    (-1, "无效")
+)
+
 
 class Invoice(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    figure = models.ImageField("发票图", upload_to="invoice/figure", blank=True)
     invoice_code = models.CharField("发票代码", max_length=36)
     invoice_no = models.CharField("发票号码", max_length=36)
     invoice_ctime = models.DateTimeField("开票日期", default=timezone.now)
@@ -21,8 +28,7 @@ class Invoice(models.Model):
     total_price_upper = models.CharField("价税合计大写", max_length=50, blank=True)
     taxpayer_no = models.CharField("纳税人识别码", max_length=50, blank=True)
     retail_sales_units = models.CharField("销货单位", max_length=100, blank=True)
-    
-    figure = models.ImageField("发票图", upload_to="invoice/figure", blank=True)
+    status = models.IntegerField("状态", default=0, choices=STATUS_CHOICES)
     ctime = models.DateTimeField("创建时间", auto_now_add=True)
     utime = models.DateTimeField(auto_now=True)
     

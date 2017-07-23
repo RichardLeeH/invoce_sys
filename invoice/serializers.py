@@ -13,9 +13,10 @@ from invoice.models import Invoice
 class InvoiceCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
+        exclude = ["ctime", "utime"]
 
 
 class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
-        fields = ("id", "invoice_code", "invoice_no")
+        exclude = ("ctime", "utime")

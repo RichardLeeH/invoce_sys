@@ -28,7 +28,7 @@ xadmin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'xadmin/', include(xadmin.site.urls)),
-    url(r'^invoice/', include("invoice.urls")),
+    url(r'^', include("invoice.urls")),
     url(r'^account/', include("account.urls")),
 ] + static(settings.STATIC_URL,
            document_root=settings.STATIC_ROOT)
